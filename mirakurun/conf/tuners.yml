@@ -4,7 +4,7 @@
     - CS
   command: recpt1 --device /dev/pt3video0 <channel> - -
   decoder: arib-b25-stream-test
-  isDisabled: false
+  isDisabled: true
 
 - name: PT3-S1
   types:
@@ -12,7 +12,7 @@
     - CS
   command: recpt1 --device /dev/pt3video1 <channel> - -
   decoder: arib-b25-stream-test
-  isDisabled: false
+  isDisabled: true
 
 - name: PT3-T0
   types:
