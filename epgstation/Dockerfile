@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM node:12-buster-slim
 EXPOSE 8888
 ARG CPUCORE="1"
 ENV DEV="make gcc git g++ automake curl wget autoconf build-essential python3 libass-dev libfreetype6-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev"
@@ -38,10 +38,6 @@ RUN apt-get update && \
     cd /tmp/ffmpeg_sources/ffmpeg* && \
     make -j${CPUCORE} && \
     make install && \
-\
-# nodejs install
-    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get install -y nodejs && \
 \
 # install EPGStation
     cd /usr/local/ && \

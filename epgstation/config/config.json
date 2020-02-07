@@ -9,6 +9,8 @@
         "connectTimeout": 1000,
         "connectionLimit": 10
     },
+    "reservationAddedCommand": "/usr/local/bin/node /usr/local/EPGStation/config/rec.js 録画を追加しました",
+    "recordedEndCommand": "/usr/local/bin/node /usr/local/EPGStation/config/rec.js 録画を終了しました",
     "excludeServices": [],
     "maxEncode": 2,
     "encode": [

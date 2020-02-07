@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM node:12-buster-slim
 EXPOSE 40772
 ENV DOCKER="YES"
 ENV DEV="libpcsclite-dev build-essential curl libssl-dev yasm libtool autoconf pkg-config gcc git g++ make automake"
@@ -15,10 +15,6 @@ RUN apt-get update && \
     ./configure && \
     make && \
     make install && \
-\
-# nodejs
-    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get install -y nodejs && \
 \
 # pm2
 \
