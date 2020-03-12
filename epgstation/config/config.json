@@ -1,5 +1,7 @@
 {
     "serverPort": 8888,
+    "socketioPort": 8888,
+    "clientSocketioPort": 443,
     "mirakurunPath": "http://mirakurun:40772/",
     "mysql": {
         "host": "mysql",
@@ -32,16 +34,19 @@
     "delts": false,
     "recordedViewer": {
         "ios": "infuse://x-callback-url/play?url=http://ADDRESS",
-        "android": "intent://ADDRESS#Intent;package=com.mxtech.videoplayer.ad;type=video;scheme=http;end"
+        "android": "intent://ADDRESS#Intent;package=com.mxtech.videoplayer.ad;type=video;scheme=http;end",
+	"mac" : "cvlc://http://ADDRESS"
     },
     "recordedDownloader": {
         "ios": "vlc-x-callback://x-callback-url/download?url=http://ADDRESS&filename=FILENAME",
-        "android": "intent://ADDRESS#Intent;package=com.dv.adm;type=video;scheme=http;end"
+        "android": "intent://ADDRESS#Intent;package=com.dv.adm;type=video;scheme=http;end",
+	"mac" : "cvlc://http://ADDRESS"
     },
     "maxStreaming": 2,
     "mpegTsViewer": {
         "ios": "vlc-x-callback://x-callback-url/stream?url=http://ADDRESS",
-        "android": "intent://ADDRESS#Intent;package=com.mxtech.videoplayer.ad;type=video;scheme=http;end"
+        "android": "intent://ADDRESS#Intent;package=com.mxtech.videoplayer.ad;type=video;scheme=http;end",
+	"mac" : "cvlc://http://ADDRESS"
     },
     "mpegTsStreaming": [
         {
