@@ -3,6 +3,8 @@ services:
     mirakurun:
         build: mirakurun
         privileged: true
+        labels:
+            - "traefik.enable=false"
         volumes:
             - ./mirakurun/conf:/usr/local/etc/mirakurun
             - ./mirakurun/db:/usr/local/var/db/mirakurun
@@ -13,11 +15,13 @@ services:
             - /dev/pt3video1:/dev/pt3video1
             - /dev/pt3video2:/dev/pt3video2
             - /dev/pt3video3:/dev/pt3video3
-            - /dev/bus/usb/001/009
+            - /dev/bus/usb/001/005
         restart: always
 
     mysql:
         image: mariadb
+        labels:
+            - "traefik.enable=false"
         volumes:
             - ./db:/var/lib/mysql
         environment:
@@ -28,16 +32,23 @@ services:
         command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
         restart: always
 
-    epgstation:
+    tv:
         build: epgstation
+        labels:
+            - "traefik.http.routers.tv-epg.middlewares=auth"
+            - "traefik.http.middlewares.auth.basicauth.users=yui:$$apr1$$2kJcSFij$$VY2/mxxbcWHxrEyet2VI90"
+        networks:
+            - desktop_default
+            - default
         volumes:
             - ./epgstation/config:/usr/local/EPGStation/config
             - ./epgstation/data:/usr/local/EPGStation/data
             - ./epgstation/thumbnail:/usr/local/EPGStation/thumbnail
             - ./epgstation/logs:/usr/local/EPGStation/logs
             - ./recorded:/usr/local/EPGStation/recorded
-        ports:
-            - "8888:8888"
-            - "8889:8889"
         restart: always
 
+networks:
+    desktop_default:
+        external: true
+        name: desktop_default
