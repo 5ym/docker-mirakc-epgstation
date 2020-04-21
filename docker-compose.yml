@@ -15,7 +15,7 @@ services:
             - /dev/pt3video1:/dev/pt3video1
             - /dev/pt3video2:/dev/pt3video2
             - /dev/pt3video3:/dev/pt3video3
-            - /dev/bus/usb/001/005
+            - /dev/bus/usb/001/004
         restart: always
 
     mysql:
