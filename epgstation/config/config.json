@@ -35,11 +35,11 @@
     "recordedViewer": {
         "ios": "infuse://x-callback-url/play?url=http://ADDRESS",
         "android": "intent://ADDRESS#Intent;package=org.videolan.vlc;type=video;scheme=https;end",
-	    "mac" : "cvlc://http://ADDRESS"
+	    "mac" : "cvlc://ADDRESS"
     },
     "recordedDownloader": {
         "ios": "vlc-x-callback://x-callback-url/download?url=http://ADDRESS&filename=FILENAME",
-	    "mac" : "cvlc://http://ADDRESS"
+	    "mac" : "cvlc://ADDRESS"
     },
     "maxStreaming": 2,
     "mpegTsStreaming": [
@@ -58,7 +58,7 @@
     "mpegTsViewer": {
         "ios": "vlc-x-callback://x-callback-url/stream?url=http://ADDRESS",
         "android": "intent://ADDRESS#Intent;package=org.videolan.vlc;type=video;scheme=https;end",
-	    "mac" : "cvlc://http://ADDRESS"
+	    "mac" : "cvlc://ADDRESS"
     },
     "recordedHLS": [
         {
