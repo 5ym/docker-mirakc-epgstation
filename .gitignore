@@ -15,3 +15,4 @@
 /mirakurun/db/*
 /db
 !.gitkeep
+/docker-compose.yml
