@@ -4,7 +4,7 @@
     "clientSocketioPort": 443,
     "mirakurunPath": "http://mirakurun:40772/",
     "mysql": {
-        "host": "mysql",
+        "host": "epg-db",
         "user": "epgstation",
         "database": "epgstation",
         "password": "epgstation",
@@ -35,11 +35,13 @@
     "recordedViewer": {
         "ios": "infuse://x-callback-url/play?url=http://ADDRESS",
         "android": "intent://ADDRESS#Intent;package=org.videolan.vlc;type=video;scheme=https;end",
-	    "mac" : "cvlc://ADDRESS"
+        "mac" : "cvlc://ADDRESS",
+        "win" : "cvlc://http://ADDRESS"
     },
     "recordedDownloader": {
         "ios": "vlc-x-callback://x-callback-url/download?url=http://ADDRESS&filename=FILENAME",
-	    "mac" : "cvlc://ADDRESS"
+        "mac" : "cvlc://ADDRESS",
+        "win" : "cvlc://http://ADDRESS"
     },
     "maxStreaming": 2,
     "mpegTsStreaming": [
@@ -58,7 +60,8 @@
     "mpegTsViewer": {
         "ios": "vlc-x-callback://x-callback-url/stream?url=http://ADDRESS",
         "android": "intent://ADDRESS#Intent;package=org.videolan.vlc;type=video;scheme=https;end",
-	    "mac" : "cvlc://ADDRESS"
+        "mac" : "cvlc://ADDRESS",
+        "win" : "cvlc://http://ADDRESS"
     },
     "recordedHLS": [
         {
