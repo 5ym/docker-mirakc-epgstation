@@ -12,7 +12,7 @@
 !/epgstation/config/operatorLogConfig.json
 !/epgstation/config/serviceLogConfig.json
 /epgstation/data/*.json
-/mirakurun/db/*
+/mirakurun/data/*
 /db
 !.gitkeep
 /docker-compose.yml

@@ -39,9 +39,7 @@
         "win" : "cvlc://http://ADDRESS"
     },
     "recordedDownloader": {
-        "ios": "vlc-x-callback://x-callback-url/download?url=http://ADDRESS&filename=FILENAME",
-        "mac" : "cvlc://ADDRESS",
-        "win" : "cvlc://http://ADDRESS"
+        "ios": "vlc-x-callback://x-callback-url/download?url=http://ADDRESS&filename=FILENAME"
     },
     "maxStreaming": 2,
     "mpegTsStreaming": [
