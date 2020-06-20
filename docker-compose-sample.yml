@@ -1,32 +1,30 @@
-version: '3'
+version: '3.7'
 services:
     mirakurun:
-        build:
-            context: mirakurun
-        container_name: mirakurun
-        #cap_add:
-        #    - SYS_NICE
-        #    - SYS_ADMIN
-        privileged: true
+        image: chinachu/mirakurun
+        cap_add:
+            - SYS_ADMIN
+            - SYS_NICE
         ports:
             - "40772:40772"
+            - "9229:9229"
         volumes:
-            - /etc/localtime:/etc/localtime:ro
-            - ./mirakurun/conf:/usr/local/etc/mirakurun
-            - ./mirakurun/db:/usr/local/var/db/mirakurun
+            - ./mirakurun/conf:/app-config
+            - ./mirakurun/data:/app-data
         environment:
             TZ: "Asia/Tokyo"
         devices:
-            - /dev/pt3video0:/dev/pt3video0
-            - /dev/pt3video1:/dev/pt3video1
-            - /dev/pt3video2:/dev/pt3video2
-            - /dev/pt3video3:/dev/pt3video3
-            #- /dev/bus/usb/00x/00x # card reader
-        #restart: always
+            - /dev/bus:/dev/bus
+            - /dev/dvb:/dev/dvb
+        restart: always
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
 
     mysql:
         image: mariadb:10.4
-        container_name: mysql
         volumes:
             - mysql-db:/var/lib/mysql
         environment:
@@ -36,14 +34,17 @@ services:
             MYSQL_DATABASE: epgstation
             TZ: "Asia/Tokyo"
         command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --performance-schema=false --expire_logs_days=1
-        #restart: always
+        restart: always
+        logging:
+            options:
+                max-size: "10m"
+                max-file: "3"
 
     epgstation:
         build:
             context: epgstation
             args:
                 - CPUCORE=2
-        container_name: epgstation
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - ./epgstation/config:/app/config
@@ -53,14 +54,14 @@ services:
             - ./recorded:/app/recorded
         environment:
             TZ: "Asia/Tokyo"
-        links:
-            - mirakurun:mirakurun
-            - mysql:mysql
+        depends_on:
+            - mirakurun
+            - mysql
         ports:
             - "8888:8888"
             - "8889:8889"
         #user: "1000:1000"
-        #restart: always
+        restart: always
 
 volumes:
     mysql-db:
