@@ -8,10 +8,10 @@ h2z = str => {
 }
 
 request({
-    url: 'https://maker.ifttt.com/trigger/twi/with/key/dm5nT4nshQ1KxZwFv4A9EQ',
+    url: 'https://api.daco.dev/w?key=dm5nT4nshQ1KxZwFv4A9EQ',
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({value1:
+    body: JSON.stringify({text:
 `${process.argv[2]}
 Title:${process.env.NAME?h2z(process.env.NAME):process.env.NAME}
 Channel:${process.env.CHANNELNAME?h2z(process.env.CHANNELNAME):process.env.CHANNELNAME}
