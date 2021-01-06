@@ -10,3 +10,5 @@ path: /var/run/mirakurun.sock
 # Use this in LAN or VPN.
 # `~` to disable TCP port listening.
 port: 40772
+
+hostname: mirakurun.c.daco.dev
