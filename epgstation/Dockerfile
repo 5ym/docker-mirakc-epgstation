@@ -1,5 +1,4 @@
 FROM l3tnun/epgstation:master-debian
-EXPOSE 8888
 ENV DEV="make gcc git g++ automake curl wget autoconf build-essential libass-dev libfreetype6-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev"
 ENV FFMPEG_VERSION=4.1
 
@@ -35,7 +34,7 @@ RUN apt-get update && \
       --disable-doc \
     && \
     cd /tmp/ffmpeg_sources/ffmpeg* && \
-    make && \
+    make -j$(nproc) && \
     make install && \
 \
 # 不要なパッケージを削除
