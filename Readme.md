@@ -45,11 +45,11 @@ $ sudo docker-compose down
 
 ```sh
 # mirakurunとdbを更新
-$ docker-compose pull
+$ sudo docker-compose pull
 # epgstationを更新
-$ docker-compose build --pull
+$ sudo docker-compose build --pull
 # 最新のイメージを元に起動
-$ docker-compose up -d
+$ sudo docker-compose up -d
 ```
 
 ## 設定
