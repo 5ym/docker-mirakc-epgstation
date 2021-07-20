@@ -4,14 +4,16 @@ ENV DEV="autoconf automake bash binutils bzip2 cmake curl coreutils diffutils fi
 ENV FFMPEG_VERSION=4.2.4
 
 RUN apk add --no-cache libgcc libstdc++ ca-certificates libcrypto1.1 libssl1.1 libgomp expat git lame libass libvpx opus libtheora libvorbis x264-libs x265-libs $DEV && \
+#aom-lib
+    mkdir /tmp/aom && cd /tmp/aom && wget https://aomedia.googlesource.com/aom/+archive/master.tar.gz && \
+    tar zxf master.tar.gz && mkdir tmp && cd tmp && cmake .. && make && make install && rm -rf /tmp/aom &&\
 \
 #ffmpeg build
-\
     mkdir /tmp/ffmpeg_sources && \
     cd /tmp/ffmpeg_sources && \
     wget http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2 -O ffmpeg.tar.bz2 && \
     tar xjvf ffmpeg.tar.bz2 && \
-    cd /tmp/ffmpeg_sources/ffmpeg* && \
+    cd ffmpeg* && \
     ./configure \
       --prefix=/usr/local \
       --disable-shared \
@@ -26,14 +28,13 @@ RUN apk add --no-cache libgcc libstdc++ ca-certificates libcrypto1.1 libssl1.1 l
       --enable-libx264 \
       --enable-libx265 \
       --enable-nonfree \
+      --enable-libaom \
       --disable-debug \
       --disable-doc \
     && \
-    cd /tmp/ffmpeg_sources/ffmpeg* && \
     make -j$(nproc) && \
     make install && \
 \
 # 不要なパッケージを削除
-\
     apk del $DEV && \
     rm -rf /tmp/ffmpeg_sources
