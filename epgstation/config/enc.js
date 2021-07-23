@@ -5,7 +5,6 @@ const ffprobe = process.env.FFPROBE;
 
 const input = process.env.INPUT;
 const output = process.env.OUTPUT;
-const isDualMono = parseInt(process.env.AUDIOCOMPONENTTYPE, 10) == 2;
 const args = ['-y'];
 
 /**
@@ -37,25 +36,15 @@ Array.prototype.push.apply(args, ['-fix_sub_duration']);
 // input 設定
 Array.prototype.push.apply(args, ['-i', input]);
 // ビデオストリーム設定
-Array.prototype.push.apply(args, ['-map', '0:v', '-c:v', 'libx265']);
+Array.prototype.push.apply(args, ['-c:v', 'libx265']);
 // オーディオストリーム設定
-if (isDualMono) {
-    Array.prototype.push.apply(args, [
-        '-filter_complex',
-        'channelsplit[FL][FR]',
-        '-map', '[FL]',
-        '-map', '[FR]',
-        '-metadata:s:a:0', 'language=jpn',
-        '-metadata:s:a:1', 'language=eng',
-    ]);
-    Array.prototype.push.apply(args, ['-c:a', 'ac3', '-ar', '48000', '-ab', '256k']);
-} else {
-    Array.prototype.push.apply(args, ['-map', '0:a', '-c:a', 'copy']);
-}
+Array.prototype.push.apply(args, ['-c:a', 'copy']);
 // 字幕ストリーム設定
-Array.prototype.push.apply(args, ['-map', '0:s', '-c:s', 'mov_text']);
+Array.prototype.push.apply(args, ['-c:s', 'mov_text']);
 // 品質設定
-Array.prototype.push.apply(args, ['-preset', 'fast']);
+Array.prototype.push.apply(args, ['-preset', 'medium']);
+// 全ての解析不能ストリームもコピー
+Array.prototype.push.apply(args, ['-copy_unknown']);
 // 出力ファイル
 Array.prototype.push.apply(args, [output]);
 
