@@ -44,6 +44,7 @@ if (isDualMono) {
         '-map', '[FR]',
         '-metadata:s:a:0', 'language=jpn',
         '-metadata:s:a:1', 'language=eng',
+
     ]);
     Array.prototype.push.apply(args, ['-c:a', 'ac3', '-ar', '48000', '-ab', '256k']);
 } else {
@@ -51,7 +52,7 @@ if (isDualMono) {
     Array.prototype.push.apply(args, ['-c:a', 'aac']);
 }
 
-Array.prototype.push.apply(args, ['-ignore_unknown']);
+Array.prototype.push.apply(args, ['-ignore_unknown', '-sn']);
 
 // その他設定
 Array.prototype.push.apply(args, ['-c:v', 'libx265', output]);
