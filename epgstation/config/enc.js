@@ -37,7 +37,7 @@ Array.prototype.push.apply(args, ['-fix_sub_duration']);
 // input 設定
 Array.prototype.push.apply(args, ['-i', input]);
 // ビデオストリーム設定
-Array.prototype.push.apply(args, ['-map', '0:v', '-c:v', 'libx264']);
+Array.prototype.push.apply(args, ['-map', '0:v', '-c:v', 'libx265']);
 // オーディオストリーム設定
 if (isDualMono) {
     Array.prototype.push.apply(args, [
