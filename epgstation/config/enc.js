@@ -54,7 +54,7 @@ if (isDualMono) {
 Array.prototype.push.apply(args, ['-ignore_unknown']);
 
 // その他設定
-Array.prototype.push.apply(args, ['-c:v', 'libx264', output]);
+Array.prototype.push.apply(args, ['-c:v', 'libx265', output]);
 
 let str = '';
 for (let i of args) {
