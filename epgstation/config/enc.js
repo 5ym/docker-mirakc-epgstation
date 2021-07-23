@@ -32,35 +32,32 @@ const getDuration = filePath => {
     });
 };
 
+// 字幕用
+Array.prototype.push.apply(args, ['-fix_sub_duration']);
 // input 設定
 Array.prototype.push.apply(args, ['-i', input]);
-
+// ビデオストリーム設定
+Array.prototype.push.apply(args, ['-map', '0:v', '-c:v', 'libx264']);
+// オーディオストリーム設定
 if (isDualMono) {
     Array.prototype.push.apply(args, [
         '-filter_complex',
         'channelsplit[FL][FR]',
-        '-map', '0:v',
         '-map', '[FL]',
         '-map', '[FR]',
         '-metadata:s:a:0', 'language=jpn',
         '-metadata:s:a:1', 'language=eng',
-
     ]);
     Array.prototype.push.apply(args, ['-c:a', 'ac3', '-ar', '48000', '-ab', '256k']);
 } else {
-    // audio dataをコピー
-    Array.prototype.push.apply(args, ['-c:a', 'aac']);
+    Array.prototype.push.apply(args, ['-map', '0:a', '-c:a', 'copy']);
 }
-
-Array.prototype.push.apply(args, ['-ignore_unknown', '-sn']);
-
-// その他設定
-Array.prototype.push.apply(args, ['-c:v', 'libx265', output]);
-
-let str = '';
-for (let i of args) {
-    str += ` ${i}`;
-}
+// 字幕ストリーム設定
+Array.prototype.push.apply(args, ['-map', '0:s', '-c:s', 'mov_text']);
+// 品質設定
+Array.prototype.push.apply(args, ['-preset', 'fast']);
+// 出力ファイル
+Array.prototype.push.apply(args, [output]);
 
 (async () => {
     // 進捗計算のために動画の長さを取得
@@ -77,7 +74,6 @@ for (let i of args) {
         let strbyline = String(data).split('\n');
         for (let i = 0; i < strbyline.length; i++) {
             let str = strbyline[i];
-            // console.log(strbyline[i]);
             if (str.startsWith('frame')) {
                 // 想定log
                 // frame= 5159 fps= 11 q=29.0 size=  122624kB time=00:02:51.84 bitrate=5845.8kbits/s dup=19 drop=0 speed=0.372x
