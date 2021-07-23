@@ -54,23 +54,18 @@ if (isDualMono) {
 Array.prototype.push.apply(args, ['-ignore_unknown']);
 
 // その他設定
-Array.prototype.push.apply(args, ['-c:v', 'libaom-av1', output]);
+Array.prototype.push.apply(args, ['-c:v', 'libx264', output]);
 
 let str = '';
 for (let i of args) {
     str += ` ${i}`;
 }
-// console.error(str);
 
 (async () => {
     // 進捗計算のために動画の長さを取得
     const duration = await getDuration(input);
 
     const child = spawn(ffmpeg, args);
-
-    let inputfileinfo = false;
-    let outputfileinfo = false;
-    let fileinfolog = '';
 
     /**
      * エンコード進捗表示用に標準出力に進捗情報を吐き出す
@@ -117,7 +112,6 @@ for (let i of args) {
                  * ]
                  */
 
-                // console.log(ffmatch);
                 if (ffmatch === null) continue;
 
                 progress['frame'] = parseInt(ffmatch.groups.frame);
