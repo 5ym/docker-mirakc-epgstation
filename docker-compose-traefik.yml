@@ -1,11 +1,12 @@
 version: '3.8'
 services:
-    m-mirakurun:
+    mirakurun:
         image: chinachu/mirakurun
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.mirakurun.middlewares=auth"
             - "traefik.http.services.mirakurun.loadbalancer.server.port=40772"
+            - "traefik.http.routers.mirakurun.rule=Host(`m.c.daco.dev`)"
         networks:
             - compose_default
             - default
@@ -21,7 +22,7 @@ services:
             - /dev/bus:/dev/bus
             - /dev/dvb:/dev/dvb
         restart: always
-    epg-db:
+    db:
         image: mariadb
         volumes:
             - ./db:/var/lib/mysql
@@ -38,7 +39,7 @@ services:
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.tv.middlewares=auth"
-            - "traefik.http.middlewares.auth.basicauth.users=user:pass"
+            - "traefik.http.middlewares.auth.basicauth.users={set htpasswd here}"
         networks:
             - compose_default
             - default
