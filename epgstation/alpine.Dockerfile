@@ -1,4 +1,4 @@
-FROM l3tnun/epgstation:master-alpine
+FROM l3tnun/epgstation:alpine
 
 ENV DEV="autoconf automake bash binutils bzip2 cmake curl coreutils diffutils file g++ gcc gperf libtool make python3 openssl-dev tar yasm nasm zlib-dev expat-dev pkgconfig libass-dev lame-dev opus-dev libtheora-dev libvorbis-dev libvpx-dev x264-dev x265-dev libva-dev"
 ENV FFMPEG_VERSION=4.2.4

@@ -1,0 +1,63 @@
+services:
+    mirakc:
+        build:
+            dockerfile_inline: |
+                FROM mirakc/mirakc
+                RUN cd /tmp && \
+                    curl -OL https://github.com/tsukumijima/libaribb25/releases/download/v0.2.9/libaribb25_0.2.9_amd64.deb && \
+                    apt-get update && apt-get -y install ./libaribb25_0.2.9_amd64.deb pcscd
+        entrypoint: sh -c 'pcscd && /usr/local/bin/mirakc'
+        volumes:
+            - ./mirakc/epg:/var/lib/mirakc/epg
+            - ./mirakc/config.yml:/etc/mirakc/config.yml:ro
+        environment:
+            TZ: Asia/Tokyo
+            RUST_LOG: info
+        devices:
+            - /dev/bus:/dev/bus
+            - /dev/dvb:/dev/dvb
+        restart: always
+    db:
+        image: mariadb:11.1
+        volumes:
+            - ./db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: epgstation
+            MYSQL_DATABASE: epgstation
+            TZ: Asia/Tokyo
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        restart: always
+    epgstation:
+        build:
+            context: "./epgstation"
+            dockerfile: "debian.Dockerfile"
+        # labels:
+        #     - "traefik.enable=true"
+        #     - "traefik.http.routers.epgstation.middlewares=auth"
+        #     - "traefik.http.middlewares.auth.basicauth.users="
+        #     - "traefik.http.routers.epgstation.rule=Host(`e.doany.io`)"
+        #     - "traefik.http.routers.exclude.rule=Host(`e.doany.io`) && PathPrefix(`/socket.io`)"
+        # networks:
+        #     - main_default
+        #     - default
+        volumes:
+            - ./epgstation/config:/app/config
+            - ./epgstation/data:/app/data
+            - ./epgstation/thumbnail:/app/thumbnail
+            - ./epgstation/logs:/app/logs
+            - ./recorded:/app/recorded
+        environment:
+            TZ: "Asia/Tokyo"
+        restart: always
+        # nvidia
+        # deploy:
+        #     resources:
+        #         reservations:
+        #             devices:
+        #                 - driver: nvidia
+        #                   capabilities: [compute, utility, video]
+
+# networks:
+#     main_default:
+#         external: true
+#         name: main_default

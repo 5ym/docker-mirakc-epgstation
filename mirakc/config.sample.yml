@@ -1,0 +1,158 @@
+epg:
+  cache-dir: /var/lib/mirakc/epg
+
+server:
+  addrs:
+    - http: '0.0.0.0:40772'
+
+channels:
+  - name: Ｊ：ＣＯＭテレビ
+    type: GR
+    channel: '13'
+  - name: ＴＯＫＹＯ　ＭＸ
+    type: GR
+    channel: '16'
+  - name: ｔｖｋ
+    type: GR
+    channel: '18'
+  - name: フジテレビ
+    type: GR
+    channel: '21'
+  - name: ＴＢＳ
+    type: GR
+    channel: '22'
+  - name: テレビ東京
+    type: GR
+    channel: '23'
+  - name: テレビ朝日
+    type: GR
+    channel: '24'
+  - name: 日テレ
+    type: GR
+    channel: '25'
+  - name: ＮＨＫＥテレ
+    type: GR
+    channel: '26'
+  - name: ＮＨＫ総合
+    type: GR
+    channel: '27'
+  - name: チバテレ
+    type: GR
+    channel: '30'
+  - name: テレ玉
+    type: GR
+    channel: '32'
+  - name: Ｊ：ＣＯＭチャンネル
+    type: GR
+    channel: '50'
+  - name: ＮＨＫＢＳ１
+    type: BS
+    channel: BS15_0
+    services: [101]
+  - name: ＮＨＫＢＳプレミアム
+    type: BS
+    channel: BS03_1
+    services: [103]
+  - name: ＢＳ日テレ
+    type: BS
+    channel: BS13_0
+    services: [141]
+  - name: ＢＳ朝日１
+    type: BS
+    channel: BS01_0
+    services: [151]
+  - name: ＢＳ－ＴＢＳ
+    type: BS
+    channel: BS01_1
+    services: [161]
+  - name: ＢＳテレ東
+    type: BS
+    channel: BS01_2
+    services: [171]
+  - name: ＢＳフジ・１８１
+    type: BS
+    channel: BS13_1
+    services: [181]
+  - name: ＷＯＷＯＷプライム
+    type: BS
+    channel: BS03_0
+    services: [191]
+  - name: ＷＯＷＯＷライブ
+    type: BS
+    channel: BS05_0
+    services: [192]
+  - name: ＷＯＷＯＷシネマ
+    type: BS
+    channel: BS05_1
+    services: [193]
+  - name: スターチャンネル１
+    type: BS
+    channel: BS09_1
+    services: [200]
+  - name: スターチャンネル２
+    type: BS
+    channel: BS15_1
+    services: [201]
+  - name: スターチャンネル３
+    type: BS
+    channel: BS15_1
+    services: [202]
+  - name: ＢＳ１１イレブン
+    type: BS
+    channel: BS09_0
+    services: [211]
+  - name: ＢＳ１２トゥエルビ
+    type: BS
+    channel: BS09_2
+    services: [222]
+  - name: 放送大学テレビ
+    type: BS
+    channel: BS11_0
+    services: [231]
+  - name: 放送大学テレビ
+    type: BS
+    channel: BS11_0
+    services: [232]
+  - name: ＢＳアニマックス
+    type: BS
+    channel: BS13_2
+    services: [236]
+  - name: Ｊ　ＳＰＯＲＴＳ　１
+    type: BS
+    channel: BS19_1
+    services: [242]
+  - name: Ｊ　ＳＰＯＲＴＳ　２
+    type: BS
+    channel: BS19_2
+    services: [243]
+  - name: Ｊ　ＳＰＯＲＴＳ　３
+    type: BS
+    channel: BS19_3
+    services: [244]
+  - name: Ｊ　ＳＰＯＲＴＳ　４
+    type: BS
+    channel: BS19_0
+    services: [245]
+
+tuners:
+  - name: adapter0
+    types: [BS, CS]
+    command: >-
+      recdvb --dev 0 {{channel}} {{duration}} -
+  - name: adapter1
+    types: [GR]
+    command: >-
+      recdvb --dev 1 {{channel}} {{duration}} -
+  - name: adapter2
+    types: [BS, CS]
+    command: >-
+      recdvb --dev 2 {{channel}} {{duration}} -
+  - name: adapter3
+    types: [GR]
+    command: >-
+      recdvb --dev 3 {{channel}} {{duration}} -
+
+filters:
+  decode-filter:
+    command: >-
+      arib-b25-stream-test -v 0
