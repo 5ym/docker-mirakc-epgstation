@@ -2,12 +2,10 @@ const spawn = require('child_process').spawn;
 const execFile = require('child_process').execFile;
 const ffmpeg = process.env.FFMPEG;
 const ffprobe = process.env.FFPROBE;
-
 const input = process.env.INPUT;
 const output = process.env.OUTPUT;
 const isDualMono = parseInt(process.env.AUDIOCOMPONENTTYPE, 10) == 2;
 const args = ['-y'];
-
 /**
  * 動画長取得関数
  * @param {string} filePath ファイルパス
@@ -18,10 +16,8 @@ const getDuration = filePath => {
         execFile(ffprobe, ['-v', '0', '-show_format', '-of', 'json', filePath], (err, stdout) => {
             if (err) {
                 reject(err);
-
                 return;
             }
-
             try {
                 const result = JSON.parse(stdout);
                 resolve(parseFloat(result.format.duration));
@@ -31,7 +27,6 @@ const getDuration = filePath => {
         });
     });
 };
-
 // 字幕用
 Array.prototype.push.apply(args, ['-fix_sub_duration']);
 // input 設定
@@ -60,13 +55,10 @@ Array.prototype.push.apply(args, ['-map', '0:s?', '-c:s', 'mov_text']);
 Array.prototype.push.apply(args, ['-preset', 'veryfast', '-crf', '26']);
 // 出力ファイル
 Array.prototype.push.apply(args, [output]);
-
 (async () => {
     // 進捗計算のために動画の長さを取得
     const duration = await getDuration(input);
-
     const child = spawn(ffmpeg, args);
-
     /**
      * エンコード進捗表示用に標準出力に進捗情報を吐き出す
      * 出力する JSON
@@ -110,9 +102,7 @@ Array.prototype.push.apply(args, [output]);
                  *   }
                  * ]
                  */
-
                 if (ffmatch === null) continue;
-
                 progress['frame'] = parseInt(ffmatch.groups.frame);
                 progress['fps'] = parseFloat(ffmatch.groups.fps);
                 progress['q'] = parseFloat(ffmatch.groups.q);
@@ -122,7 +112,6 @@ Array.prototype.push.apply(args, [output]);
                 progress['dup'] = ffmatch.groups.dup == null ? 0 : parseInt(ffmatch.groups.dup);
                 progress['drop'] = ffmatch.groups.drop == null ? 0 : parseInt(ffmatch.groups.drop);
                 progress['speed'] = parseFloat(ffmatch.groups.speed);
-
                 let current = 0;
                 const times = progress.time.split(':');
                 for (let i = 0; i < times.length; i++) {
@@ -134,7 +123,6 @@ Array.prototype.push.apply(args, [output]);
                         current += parseFloat(times[i]);
                     }
                 }
-
                 // 進捗率 1.0 で 100%
                 const percent = current / duration;
                 const log =
@@ -152,17 +140,14 @@ Array.prototype.push.apply(args, [output]);
                     progress.drop +
                     ' speed=' +
                     progress.speed;
-
                 console.log(JSON.stringify({ type: 'progress', percent: percent, log: log }));
             }
         }
     });
-
     child.on('error', err => {
         console.error(err);
         throw new Error(err);
     });
-
     process.on('SIGINT', () => {
         child.kill('SIGINT');
     });

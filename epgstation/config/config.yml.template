@@ -1,12 +1,10 @@
 port: 8888
 mirakurunPath: http://mirakurun:40772/
-
 # dbtype: sqlite
 # sqlite:
 #   extensions:
 #     - '/hoge/regexp.dylib'
 #   regexp: true
-
 dbtype: mysql
 mysql:
     host: mysql
@@ -14,25 +12,19 @@ mysql:
     user: epgstation
     password: epgstation
     database: epgstation
-
 epgUpdateIntervalTime: 10
-
 conflictPriority: 1
 recPriority: 2
-
 recordedFormat: '%YEAR%年%MONTH%月%DAY%日%HOUR%時%MIN%分%SEC%秒-%TITLE%'
 recordedFileExtension: .m2ts
 recorded:
     - name: recorded
       path: '%ROOT%/recorded'
-
 thumbnail: '%ROOT%/thumbnail'
 thumbnailSize: 480x270
 thumbnailPosition: 5
-
 ffmpeg: /usr/local/bin/ffmpeg
 ffprobe: /usr/local/bin/ffprobe
-
 encodeProcessNum: 4
 concurrentEncodeNum: 1
 encode:
@@ -40,7 +32,6 @@ encode:
       cmd: '%NODE% %ROOT%/config/enc.js'
       suffix: .mp4
       rate: 4.0
-
 urlscheme:
     m2ts:
         ios: vlc-x-callback://x-callback-url/stream?url=PROTOCOL%3A%2F%2FADDRESS
@@ -50,7 +41,6 @@ urlscheme:
         android: intent://ADDRESS#Intent;action=android.intent.action.VIEW;type=video/*;scheme=PROTOCOL;end
     download:
         ios: vlc-x-callback://x-callback-url/download?url=PROTOCOL%3A%2F%2FADDRESS&filename=FILENAME
-
 stream:
     live:
         ts:
@@ -64,7 +54,6 @@ stream:
                       '%FFMPEG% -re -dual_mono_mode main -i pipe:0 -sn -threads 0 -c:a aac -ar 48000 -b:a 128k -ac 2
                       -c:v libx264 -vf yadif,scale=-2:480 -b:v 1500k -preset veryfast -y -f mpegts pipe:1'
                 - name: 無変換
-
             m2tsll:
                 - name: 720p
                   cmd:
@@ -78,7 +67,6 @@ stream:
                       copy -ignore_unknown -fflags nobuffer -flags low_delay -max_delay 250000 -max_interleave_delta 1
                       -threads 0 -c:a aac -ar 48000 -b:a 128k -ac 2 -c:v libx264 -flags +cgop -vf yadif,scale=-2:480
                       -b:v 1500k -preset veryfast -y -f mpegts pipe:1'
-
             webm:
                 - name: 720p
                   cmd:
@@ -90,7 +78,6 @@ stream:
                       '%FFMPEG% -re -dual_mono_mode main -i pipe:0 -sn -threads 2 -c:a libvorbis -ar 48000 -b:a 128k -ac
                       2 -c:v libvpx-vp9 -vf yadif,scale=-2:480 -b:v 1500k -deadline realtime -speed 4 -cpu-used -8 -y -f
                       webm pipe:1'
-
             mp4:
                 - name: 720p
                   cmd:
@@ -104,7 +91,6 @@ stream:
                       -c:v libx264 -vf yadif,scale=-2:480 -b:v 1500k -profile:v baseline -preset veryfast -tune
                       fastdecode,zerolatency -movflags frag_keyframe+empty_moov+faststart+default_base_moof -y -f mp4
                       pipe:1'
-
             hls:
                 - name: 720p
                   cmd:
@@ -133,7 +119,6 @@ stream:
                       '%FFMPEG% -dual_mono_mode main -i pipe:0 -sn -threads 3 -c:a libvorbis -ar 48000 -b:a 128k -ac 2
                       -c:v libvpx-vp9 -vf yadif,scale=-2:480 -b:v 1500k -deadline realtime -speed 4 -cpu-used -8 -y -f
                       webm pipe:1'
-
             mp4:
                 - name: 720p
                   cmd:
@@ -147,7 +132,6 @@ stream:
                       libx264 -vf yadif,scale=-2:480 -b:v 1500k -profile:v baseline -preset veryfast -tune
                       fastdecode,zerolatency -movflags frag_keyframe+empty_moov+faststart+default_base_moof -y -f mp4
                       pipe:1'
-
             hls:
                 - name: 720p
                   cmd:
@@ -163,7 +147,6 @@ stream:
                       -hls_segment_filename %streamFileDir%/stream%streamNum%-%09d.ts -hls_flags delete_segments -c:a
                       aac -ar 48000 -b:a 128k -ac 2 -c:v libx264 -vf yadif,scale=-2:480 -b:v 1500k -preset veryfast
                       -flags +loop-global_header %OUTPUT%'
-
         encoded:
             webm:
                 - name: 720p
@@ -176,7 +159,6 @@ stream:
                       '%FFMPEG% -dual_mono_mode main -ss %SS% -i %INPUT% -sn -threads 3 -c:a libvorbis -ar 48000 -b:a
                       128k -ac 2 -c:v libvpx-vp9 -vf scale=-2:480 -b:v 1500k -deadline realtime -speed 4 -cpu-used -8 -y
                       -f webm pipe:1'
-
             mp4:
                 - name: 720p
                   cmd:
@@ -190,7 +172,6 @@ stream:
                       2 -c:v libx264 -vf scale=-2:480 -b:v 1500k -profile:v baseline -preset veryfast -tune
                       fastdecode,zerolatency -movflags frag_keyframe+empty_moov+faststart+default_base_moof -y -f mp4
                       pipe:1'
-
             hls:
                 - name: 720p
                   cmd:

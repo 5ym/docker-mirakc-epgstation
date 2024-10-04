@@ -1,10 +1,8 @@
 epg:
   cache-dir: /var/lib/mirakc/epg
-
 server:
   addrs:
     - http: '0.0.0.0:40772'
-
 channels:
   - name: Ｊ：ＣＯＭテレビ
     type: GR
@@ -133,7 +131,6 @@ channels:
     type: BS
     channel: BS19_0
     services: [245]
-
 tuners:
   - name: adapter0
     types: [BS, CS]
@@ -151,7 +148,6 @@ tuners:
     types: [GR]
     command: >-
       recdvb --dev 3 {{channel}} {{duration}} -
-
 filters:
   decode-filter:
     command: >-

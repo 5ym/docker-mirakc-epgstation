@@ -1,5 +1,4 @@
 #!/bin/sh
-
 git clone https://github.com/5ym/docker-mirakc-epgstation.git
 cd docker-mirakc-epgstation
 cp compose.sample.yml compose.yml

@@ -56,7 +56,6 @@ services:
         #             devices:
         #                 - driver: nvidia
         #                   capabilities: [compute, utility, video]
-
 # networks:
 #     main_default:
 #         external: true

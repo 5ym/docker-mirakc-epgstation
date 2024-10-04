@@ -1,5 +1,4 @@
 # v1からの移行方法
-
 ```sh
 # DBをマイグレーションするのでいったん終了
 docker-compose kill epgstation && docker-compose rm -f epgstation
