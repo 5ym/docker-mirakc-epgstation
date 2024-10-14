@@ -8,6 +8,251 @@ server:
       path: /var/lib/miraview
       index: index.html
 channels:
+  - name: 'Ｊ：ＣＯＭテレビ'
+    type: 'GR'
+    channel: '13'
+    extra-args: ''
+    disabled: false
+  - name: 'ｔｖｋ１'
+    type: 'GR'
+    channel: '15'
+    extra-args: ''
+    disabled: false
+  - name: 'チバテレ１'
+    type: 'GR'
+    channel: '18'
+    extra-args: ''
+    disabled: false
+  - name: 'ＴＯＫＹＯ　ＭＸ１'
+    type: 'GR'
+    channel: '19'
+    extra-args: ''
+    disabled: false
+  - name: 'フジテレビ'
+    type: 'GR'
+    channel: '21'
+    extra-args: ''
+    disabled: false
+  - name: 'ＴＢＳ１'
+    type: 'GR'
+    channel: '22'
+    extra-args: ''
+    disabled: false
+  - name: 'テレ東'
+    type: 'GR'
+    channel: '23'
+    extra-args: ''
+    disabled: false
+  - name: 'テレビ朝日'
+    type: 'GR'
+    channel: '24'
+    extra-args: ''
+    disabled: false
+  - name: '日テレ１'
+    type: 'GR'
+    channel: '25'
+    extra-args: ''
+    disabled: false
+  - name: 'ＮＨＫＥテレ１東京'
+    type: 'GR'
+    channel: '26'
+    extra-args: ''
+    disabled: false
+  - name: 'ＮＨＫ総合１・東京'
+    type: 'GR'
+    channel: '27'
+    extra-args: ''
+    disabled: false
+  - name: 'Ｊ：ＣＯＭチャンネル'
+    type: 'GR'
+    channel: '36'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳ朝日１'
+    type: 'BS'
+    channel: 'BS01_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳ－ＴＢＳ'
+    type: 'BS'
+    channel: 'BS01_1'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳテレ東'
+    type: 'BS'
+    channel: 'BS01_2'
+    extra-args: ''
+    disabled: false
+  - name: 'ＷＯＷＯＷプライム'
+    type: 'BS'
+    channel: 'BS03_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳアニマックス'
+    type: 'BS'
+    channel: 'BS03_1'
+    extra-args: ''
+    disabled: false
+  - name: 'ＷＯＷＯＷライブ'
+    type: 'BS'
+    channel: 'BS05_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＷＯＷＯＷシネマ'
+    type: 'BS'
+    channel: 'BS05_1'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳ１１イレブン'
+    type: 'BS'
+    channel: 'BS09_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳ１２トゥエルビ'
+    type: 'BS'
+    channel: 'BS09_2'
+    extra-args: ''
+    disabled: false
+  - name: '放送大学テレビ'
+    type: 'BS'
+    channel: 'BS11_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳ日テレ'
+    type: 'BS'
+    channel: 'BS13_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳフジ・１８１'
+    type: 'BS'
+    channel: 'BS13_1'
+    extra-args: ''
+    disabled: false
+  - name: 'ＮＨＫ　ＢＳ'
+    type: 'BS'
+    channel: 'BS15_0'
+    extra-args: ''
+    disabled: false
+  - name: 'スターチャンネル'
+    type: 'BS'
+    channel: 'BS15_1'
+    extra-args: ''
+    disabled: false
+  - name: 'Ｊ　ＳＰＯＲＴＳ　４'
+    type: 'BS'
+    channel: 'BS19_0'
+    extra-args: ''
+    disabled: false
+  - name: 'Ｊ　ＳＰＯＲＴＳ　１'
+    type: 'BS'
+    channel: 'BS19_1'
+    extra-args: ''
+    disabled: false
+  - name: 'Ｊ　ＳＰＯＲＴＳ　２'
+    type: 'BS'
+    channel: 'BS19_2'
+    extra-args: ''
+    disabled: false
+  - name: 'Ｊ　ＳＰＯＲＴＳ　３'
+    type: 'BS'
+    channel: 'BS19_3'
+    extra-args: ''
+    disabled: false
+  - name: 'ＷＯＷＯＷプラス'
+    type: 'BS'
+    channel: 'BS21_0'
+    extra-args: ''
+    disabled: false
+  - name: '日本映画専門ｃｈ'
+    type: 'BS'
+    channel: 'BS21_1'
+    extra-args: ''
+    disabled: false
+  - name: 'グリーンチャンネル'
+    type: 'BS'
+    channel: 'BS21_2'
+    extra-args: ''
+    disabled: false
+  - name: 'ディズニーｃｈ'
+    type: 'BS'
+    channel: 'BS23_0'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳよしもと'
+    type: 'BS'
+    channel: 'BS23_1'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳＪａｐａｎｅｘｔ'
+    type: 'BS'
+    channel: 'BS23_2'
+    extra-args: ''
+    disabled: false
+  - name: 'ＢＳ松竹東急'
+    type: 'BS'
+    channel: 'BS23_3'
+    extra-args: ''
+    disabled: false
+  - name: 'CS2'
+    type: 'CS'
+    channel: 'CS2'
+    extra-args: ''
+    disabled: false
+  - name: 'CS4'
+    type: 'CS'
+    channel: 'CS4'
+    extra-args: ''
+    disabled: false
+  - name: 'CS6'
+    type: 'CS'
+    channel: 'CS6'
+    extra-args: ''
+    disabled: false
+  - name: 'CS8'
+    type: 'CS'
+    channel: 'CS8'
+    extra-args: ''
+    disabled: false
+  - name: 'CS10'
+    type: 'CS'
+    channel: 'CS10'
+    extra-args: ''
+    disabled: false
+  - name: 'CS12'
+    type: 'CS'
+    channel: 'CS12'
+    extra-args: ''
+    disabled: false
+  - name: 'CS14'
+    type: 'CS'
+    channel: 'CS14'
+    extra-args: ''
+    disabled: false
+  - name: 'CS16'
+    type: 'CS'
+    channel: 'CS16'
+    extra-args: ''
+    disabled: false
+  - name: 'CS18'
+    type: 'CS'
+    channel: 'CS18'
+    extra-args: ''
+    disabled: false
+  - name: 'CS20'
+    type: 'CS'
+    channel: 'CS20'
+    extra-args: ''
+    disabled: false
+  - name: 'CS22'
+    type: 'CS'
+    channel: 'CS22'
+    extra-args: ''
+    disabled: false
+  - name: 'CS24'
+    type: 'CS'
+    channel: 'CS24'
+    extra-args: ''
+    disabled: false
 tuners:
   - name: adapter0
     types: [BS, CS]
