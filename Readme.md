@@ -26,7 +26,8 @@ vim compose.yml
 ```sh
 docker compose up -d
 ```
-mirakc の EPG 更新を待ってからブラウザで http://DockerHostIP:8888 へアクセスし動作を確認する
+
+mirakc の EPG 更新を待ってからブラウザで <http://DockerHostIP:8888> へアクセスし動作を確認する
 
 ## 停止
 
@@ -49,24 +50,26 @@ docker compose up -d
 
 ### Mirakc
 
-* ポート番号: 40772
+- ポート番号: 40772
 
 ### EPGStation
 
-* ポート番号: 8888
-* ポート番号: 8889
+- ポート番号: 8888
+- ポート番号: 8889
 
 ### 各種ファイル保存先
 
-* 録画データ
+- 録画データ
 ```./recorded```
-* サムネイル
+- サムネイル
 ```./epgstation/thumbnail```
-* 予約情報と HLS 配信時の一時ファイル
+- 予約情報と HLS 配信時の一時ファイル
 ```./epgstation/data```
-* EPGStation 設定ファイル
+- EPGStation 設定ファイル
 ```./epgstation/config```
-* EPGStation のログ
+- EPGStation のログ
 ```./epgstation/logs```
+
 ## v1からの移行について
+
 [docs/migration.md](docs/migration.md)を参照
