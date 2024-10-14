@@ -5,11 +5,14 @@ services:
                 FROM mirakc/mirakc
                 RUN cd /tmp && \
                     curl -OL https://github.com/tsukumijima/libaribb25/releases/download/v0.2.9/libaribb25_0.2.9_amd64.deb && \
-                    apt-get update && apt-get -y install ./libaribb25_0.2.9_amd64.deb pcscd
+                    apt-get update && apt-get -y install ./libaribb25_0.2.9_amd64.deb pcscd && \
+                    cd /var/lib && mkdir miraview && cd miraview && \
+                    curl -L https://github.com/maeda577/miraview/releases/download/v0.1.2/build.tar.gz | tar -zxvf -
         entrypoint: sh -c 'pcscd && /usr/local/bin/mirakc'
         volumes:
             - ./mirakc/epg:/var/lib/mirakc/epg
             - ./mirakc/config.yml:/etc/mirakc/config.yml:ro
+            - ./mirakc/channnels.conf:/root/.tzap/channels.conf:ro
         environment:
             TZ: Asia/Tokyo
             RUST_LOG: info
@@ -17,6 +20,13 @@ services:
             - /dev/bus:/dev/bus
             - /dev/dvb:/dev/dvb
         restart: always
+        # networks:
+        #     - main_default
+        #     - default
+        # labels:
+        #     - "traefik.enable=true"
+        #     - "traefik.http.routers.mirakc.middlewares=auth"
+        #     - "traefik.http.routers.mirakc.rule=Host(`k.doany.io`)"
     db:
         image: mariadb:11.1
         volumes:
